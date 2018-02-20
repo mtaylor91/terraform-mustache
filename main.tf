@@ -11,7 +11,7 @@ resource "local_file" "template_file" {
 # Render mustache template from template context
 resource "null_resource" "render_mustache" {
   provisioner "local-exec" {
-    command = "echo '${jsonencode(var.template_context)}' | mustache - ${local.template_file_path} > ${local.rendered_file_path}"
+    command = "echo '${jsonencode(var.template_context)}' | mustache ${local.template_file_path} > ${local.rendered_file_path}"
   }
   triggers {
     # Always render the mustache template
